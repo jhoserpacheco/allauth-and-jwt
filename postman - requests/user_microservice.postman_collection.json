@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "9b342d9a-4785-42d6-8c22-920cbb359ad0",
+		"name": "user_microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user - endpoints",
+			"item": [
+				{
+					"name": "user - view profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ5OTY4MzcyLCJpYXQiOjE2NDk5NjgwNzIsImp0aSI6IjZjYTc0Y2RhNDc2YTQwYjM5YWI3YjZjMjcyN2EyOWEwIiwidXNlcl9pZCI6MX0.fsuAi3cVgMKpeH4tDwEj40nz6Lp7TuK4aV2QPJQbqMQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/users/api/v1/u/profile/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"api",
+								"v1",
+								"u",
+								"profile",
+								""
+							]
+						},
+						"description": "Solicita la información del perfil del usuario, sirve para testear el token ya que para esta vista se requiere autanticación(token)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth - endpoints",
+			"item": [
+				{
+					"name": "user - verify token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ5OTY4NDM1LCJpYXQiOjE2NDk5NjgwNzIsImp0aSI6IjgxMDBkMGFkYjRiYzRlMmI5Y2Q5MjU5NmU0ZDYzZDZjIiwidXNlcl9pZCI6MX0.tkpqcVbh-H3Kpo2Ph3ITObZUoeDT_vwNk39-tnU6k_o\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/users/api/v1/auth/token/verify/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"api",
+								"v1",
+								"auth",
+								"token",
+								"verify",
+								""
+							]
+						},
+						"description": "Verifica el token dado, si retorna \"{}\" significa que este token es valido o no ha expirado, de lo contrario retornara un json con errores"
+					},
+					"response": []
+				},
+				{
+					"name": "user - get-token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/users/api/v1/auth/token/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"api",
+								"v1",
+								"auth",
+								"token",
+								""
+							]
+						},
+						"description": "Obtiene el token dadas las credenciales, es un tanto inutil esta request ya que la autenticación se esta realizando de otra manera"
+					},
+					"response": []
+				},
+				{
+					"name": "user - refresh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY1MDA1NDQ3MiwiaWF0IjoxNjQ5OTY4MDcyLCJqdGkiOiJlMDg3ZTY3MjUzMjU0NjY4OGY4ZDdkMDY4OGI5ZDdhNyIsInVzZXJfaWQiOjF9.yUH47CuX_9d3o-oM_h8kWx0J8579On-Rh5NPEE_FTlM\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/users/api/v1/auth/token/refresh/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"api",
+								"v1",
+								"auth",
+								"token",
+								"refresh",
+								""
+							]
+						},
+						"description": "Refresca el token con el token \"refresh\" dado en la autenticación"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
